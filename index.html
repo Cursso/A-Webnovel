@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3eee4" />
+    <title>Vellum & Vale — Novel Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-brand">V<span>&</span>V</div>
+      <div class="auth-card">
+        <p class="eyebrow">Vellum & Vale</p>
+        <h1>Write the book<br><em>only you can.</em></h1>
+        <p class="auth-copy">A private studio for serious stories—built for writers, trusted by readers.</p>
+        <form id="authForm">
+          <label class="name-field">Your name<input name="name" autocomplete="name" placeholder="Leila Morgan" /></label>
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters" required /></label>
+          <p class="form-error" id="authError"></p>
+          <button class="auth-submit" type="submit">Create my writing studio</button>
+        </form>
+        <button class="auth-switch" id="authSwitch">Already have an account? <strong>Sign in</strong></button>
+      </div>
+      <p class="auth-foot">Your words remain yours. Always.</p>
+    </section>
+
+    <section class="reader-screen hidden" id="readerScreen">
+      <header class="reader-header"><div class="reader-logo">V<span>&</span>V</div><div><p>Shared from Vellum & Vale</p><strong id="readerProject">Manuscript</strong></div></header>
+      <main class="reader-main">
+        <article class="reader-paper"><p class="eyebrow" id="readerChapter">A shared scene</p><h1 id="readerTitle"></h1><div class="reader-copy" id="readerCopy"></div></article>
+        <aside class="comment-panel"><div><p class="eyebrow">Reader notes</p><h2>Leave a thought</h2><p>Kind, specific, and useful beats clever.</p></div><div class="comments" id="comments"></div><form id="commentForm"><input name="name" placeholder="Your name" required /><textarea name="body" placeholder="What stayed with you?" required></textarea><button type="submit">Post comment</button></form></aside>
+      </main>
+    </section>
+
+    <div class="app-shell hidden" id="appShell">
+      <aside class="rail">
+        <button class="brand" aria-label="Vellum and Vale home">V<span>&</span>V</button>
+        <nav class="rail-nav" aria-label="Workspace">
+          <button class="rail-btn active" data-view="write" aria-label="Write" title="Write">
+            <svg viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16v4Zm9-13 4 4M13 20h7"/></svg>
+          </button>
+          <button class="rail-btn" data-view="plan" aria-label="Plan" title="Plan">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16M9 10h11M9 15h11"/></svg>
+          </button>
+          <button class="rail-btn" data-view="world" aria-label="Story bible" title="Story bible">
+            <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19h16M9 7h6"/></svg>
+          </button>
+          <button class="rail-btn" data-view="insights" aria-label="Insights" title="Insights">
+            <svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg>
+          </button>
+        </nav>
+        <div class="rail-bottom">
+          <button class="rail-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+            <svg viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
+          </button>
+          <button class="avatar" id="profileBtn" aria-label="Profile">LM</button>
+        </div>
+      </aside>
+
+      <aside class="project-panel">
+        <div class="project-heading">
+          <div>
+            <p class="eyebrow">Current novel</p>
+            <button class="project-title">The Cartographer’s Lie <span>⌄</span></button>
+          </div>
+          <button class="icon-btn" id="addBtn" aria-label="Add chapter or scene">＋</button>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-top"><span>First draft</span><strong>42%</strong></div>
+          <div class="progress-track"><span></span></div>
+          <p><strong>31,428</strong> of 75,000 words</p>
+        </div>
+
+        <div class="panel-tabs" role="tablist">
+          <button class="active" data-panel="manuscript">Manuscript</button>
+          <button data-panel="notes">Notes <span class="count">4</span></button>
+        </div>
+
+        <div class="manuscript-list" id="manuscriptList">
+          <section class="part open">
+            <button class="part-title"><span class="chevron">⌄</span> Part One <em>12,847</em></button>
+            <div class="chapter-list">
+              <article class="chapter">
+                <button class="chapter-row"><span class="drag">⠿</span><span><strong>01</strong> The Map Room</span><em>3,212</em></button>
+                <div class="scene-list">
+                  <button class="scene-row"><span class="status dot-green"></span><span>The letter arrives</span><em>842</em></button>
+                  <button class="scene-row active"><span class="status dot-amber"></span><span>Through the western gate</span><em>1,248</em></button>
+                  <button class="scene-row"><span class="status dot-gray"></span><span>A room with no doors</span><em>1,122</em></button>
+                </div>
+              </article>
+              <article class="chapter"><button class="chapter-row"><span class="drag">⠿</span><span><strong>02</strong> Salt & Longitude</span><em>4,681</em></button></article>
+              <article class="chapter"><button class="chapter-row"><span class="drag">⠿</span><span><strong>03</strong> The False Meridian</span><em>4,954</em></button></article>
+            </div>
+          </section>
+          <section class="part open">
+            <button class="part-title"><span class="chevron">⌄</span> Part Two <em>18,581</em></button>
+            <div class="chapter-list">
+              <article class="chapter"><button class="chapter-row"><span class="drag">⠿</span><span><strong>04</strong> The Winter Archive</span><em>5,102</em></button></article>
+              <article class="chapter"><button class="chapter-row"><span class="drag">⠿</span><span><strong>05</strong> Ink Beneath Ice</span><em>6,775</em></button></article>
+              <article class="chapter"><button class="chapter-row"><span class="drag">⠿</span><span><strong>06</strong> What the Atlas Kept</span><em>6,704</em></button></article>
+            </div>
+          </section>
+          <section class="part">
+            <button class="part-title"><span class="chevron">›</span> Part Three <em>0</em></button>
+          </section>
+        </div>
+
+        <div class="notes-list hidden" id="notesList">
+          <button><span class="note-pin rust"></span><strong>Motif</strong><small>Maps should grow less reliable as Elian gets closer.</small></button>
+          <button><span class="note-pin blue"></span><strong>Research</strong><small>Check 18th-century celestial navigation methods.</small></button>
+          <button><span class="note-pin gold"></span><strong>Revision</strong><small>Seed Mara’s compass in chapter one.</small></button>
+          <button><span class="note-pin green"></span><strong>Voice</strong><small>Elian notices distance before color.</small></button>
+        </div>
+
+        <button class="new-chapter" id="newChapter">＋ New chapter</button>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div class="breadcrumbs"><button>Part One</button><span>/</span><button>01 The Map Room</button><span>/</span><strong id="crumbScene">Through the western gate</strong></div>
+          <div class="top-actions">
+            <span class="save-state"><i></i> Saved</span>
+            <button class="icon-btn" id="searchBtn" aria-label="Search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+            </button>
+            <button class="focus-btn" id="focusBtn"><span>⌗</span> Focus</button>
+            <button class="share-btn" id="shareBtn">Share</button>
+          </div>
+        </header>
+
+        <section class="editor-view view active" id="writeView">
+          <div class="editor-wrap">
+            <div class="scene-meta">
+              <div><span class="scene-number">SCENE 2</span><span class="scene-status"><i></i> Drafting</span></div>
+              <button class="more-btn" aria-label="More options">•••</button>
+            </div>
+            <input class="scene-title-input" id="sceneTitle" value="Through the western gate" aria-label="Scene title" />
+            <div class="scene-details">
+              <button id="povBtn"><span>POV</span> Elian Voss <b>⌄</b></button>
+              <button id="locationBtn"><span>LOCATION</span> The Western Gate <b>⌄</b></button>
+              <button id="timeBtn"><span>TIME</span> Dusk, Day 3 <b>⌄</b></button>
+            </div>
+            <article class="editor" id="editor" contenteditable="true" spellcheck="true">
+              <p>By dusk, the western gate had forgotten it was a gate.</p>
+              <p>Rain silvered the old ironwork and gathered in the carved letters above the arch—names of kings no one bothered to remember. Elian stood beneath them with the letter pressed inside his coat, feeling the paper’s sharp corners each time he breathed.</p>
+              <p>The guards did not look at him. That was the first wrong thing.</p>
+              <p>They watched the road instead, both men facing outward as if the danger lay in the country he had crossed, not the city behind them. Beyond the arch, Valenne rose in terraces of slate and smoke. A thousand windows caught the last of the light.</p>
+              <p>None of them matched the map.</p>
+              <p>Elian unfolded his father’s atlas beneath the shelter of the wall. The ink was faded, the linen soft at the creases, but the western quarter was unmistakable: three streets fanning from the gate, a bell tower to the north, the river bending south like a hooked finger.</p>
+              <p>He looked up.</p>
+              <p>Four streets. No bell tower. And the river—if he could trust the smell of it—was somewhere behind him.</p>
+              <p>“You planning to stand there all night?”</p>
+              <p>The voice came from the gatehouse window. A woman leaned on the sill, her uniform unbuttoned at the throat. Unlike the guards, she was looking directly at him.</p>
+              <p>Elian closed the atlas. “I may have taken a wrong road.”</p>
+              <p>“Only one?”</p>
+            </article>
+            <button class="continue-prompt" id="continuePrompt"><span>✦</span> Spark the next line <kbd>⌘ ↵</kbd></button>
+          </div>
+          <footer class="statusbar">
+            <div><span id="wordCount">188 words</span><span>1,248 scene</span><span>3,212 chapter</span></div>
+            <div><button id="goalBtn">Daily goal <strong>742 / 1,000</strong></button><span class="goal-ring"><i></i></span></div>
+          </footer>
+        </section>
+
+        <section class="plan-view view" id="planView">
+          <div class="section-head"><div><p class="eyebrow">Story architecture</p><h1>Plot board</h1><p>See the rhythm of your novel before your reader does.</p></div><button class="primary-btn" id="addCard">＋ Add scene</button></div>
+          <div class="board">
+            <div class="board-column"><header><span class="board-dot rust"></span><strong>Setup</strong><em>3 scenes</em></header><div class="plot-card"><span>01 · ELIAN</span><h3>The letter arrives</h3><p>A sealed message draws Elian back to a city that shouldn’t exist.</p><footer><i class="tag character">Character</i><b>842</b></footer></div><div class="plot-card selected"><span>02 · ELIAN</span><h3>Through the western gate</h3><p>The city’s streets contradict his father’s most trusted map.</p><footer><i class="tag mystery">Mystery</i><b>1,248</b></footer></div></div>
+            <div class="board-column"><header><span class="board-dot gold"></span><strong>Rising action</strong><em>4 scenes</em></header><div class="plot-card"><span>04 · MARA</span><h3>The Winter Archive</h3><p>Mara offers access—for a price Elian can’t yet understand.</p><footer><i class="tag world">World</i><b>1,504</b></footer></div><div class="plot-card"><span>05 · ELIAN</span><h3>Ink beneath ice</h3><p>A palimpsest reveals a second city under Valenne.</p><footer><i class="tag mystery">Mystery</i><b>1,892</b></footer></div></div>
+            <div class="board-column"><header><span class="board-dot blue"></span><strong>Midpoint</strong><em>2 scenes</em></header><div class="plot-card"><span>08 · ELIAN</span><h3>The false meridian</h3><p>His father’s map was not inaccurate. It was a warning.</p><footer><i class="tag reveal">Reveal</i><b>—</b></footer></div><button class="empty-card">＋ Drop a scene here</button></div>
+            <div class="board-column"><header><span class="board-dot green"></span><strong>Reckoning</strong><em>1 scene</em></header><div class="plot-card"><span>11 · MARA</span><h3>What the atlas kept</h3><p>Mara chooses which version of the city will survive.</p><footer><i class="tag character">Character</i><b>—</b></footer></div></div>
+          </div>
+        </section>
+
+        <section class="world-view view" id="worldView">
+          <div class="section-head"><div><p class="eyebrow">Story bible</p><h1>Your world, remembered.</h1><p>Every person, place, thread, and secret in one living reference.</p></div><button class="primary-btn" id="addEntry">＋ New entry</button></div>
+          <div class="bible-grid">
+            <article class="bible-feature"><span class="type-label">PROTAGONIST</span><div class="monogram">EV</div><div><h2>Elian Voss</h2><p>Disgraced royal cartographer. Notices distance before color; lies only by omission.</p><div class="pill-row"><span>Age 34</span><span>POV character</span><span>Valenne</span></div></div></article>
+            <article class="bible-card"><span class="type-label">CHARACTER</span><div class="card-icon rust">MS</div><h3>Mara Senn</h3><p>Archivist of maps that have been erased from official memory.</p><small>Appears in 8 scenes</small></article>
+            <article class="bible-card"><span class="type-label">LOCATION</span><div class="card-icon blue">⌖</div><h3>The Winter Archive</h3><p>A library kept below freezing so unstable inks remain legible.</p><small>3 linked scenes</small></article>
+            <article class="bible-card"><span class="type-label">OBJECT</span><div class="card-icon gold">◇</div><h3>The Voss Atlas</h3><p>Forty-seven maps, one missing page, and a coastline that moves.</p><small>First appears: Chapter 1</small></article>
+            <article class="bible-card"><span class="type-label">STORY THREAD</span><div class="card-icon green">↝</div><h3>The Second City</h3><p>Why do certain maps show another Valenne beneath the first?</p><small>6 references · unresolved</small></article>
+          </div>
+        </section>
+
+        <section class="insights-view view" id="insightsView">
+          <div class="section-head"><div><p class="eyebrow">Writing insights</p><h1>Your practice, in motion.</h1><p>Gentle signals—not grades—to help you keep the book alive.</p></div><select><option>Last 30 days</option><option>This year</option></select></div>
+          <div class="stats-grid">
+            <article class="stat-card wide"><p>Writing activity</p><div class="chart" id="activityChart"><div style="height:32%"></div><div style="height:56%"></div><div style="height:41%"></div><div style="height:82%"></div><div style="height:64%"></div><div style="height:90%"></div><div style="height:48%"></div><div style="height:74%"></div><div style="height:95%"></div><div style="height:68%"></div><div style="height:86%"></div><div style="height:58%"></div></div><footer><span>May 20</span><span>June 18</span></footer></article>
+            <article class="stat-card"><p>Current streak</p><strong class="big-stat">12 <em>days</em></strong><span class="delta">↑ Your longest yet</span></article>
+            <article class="stat-card"><p>Words this month</p><strong class="big-stat">18,420</strong><span class="delta neutral">61% of your monthly goal</span></article>
+            <article class="stat-card"><p>Best writing time</p><strong class="big-stat">9–11 <em>PM</em></strong><span class="delta neutral">You write 34% faster then</span></article>
+            <article class="stat-card wide pace"><div><p>Draft forecast</p><strong>At this pace, your first draft lands on</strong><h2>August 23</h2></div><div class="forecast-ring"><span>42%</span></div></article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"><span>✓</span><p>Saved to your manuscript</p></div>
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <button class="modal-close" id="modalClose" aria-label="Close share dialog">×</button>
+        <p class="eyebrow">Invite a reader</p><h2>Share this chapter</h2><p>Send a private reading link. Readers can comment, but your manuscript stays untouched.</p>
+        <div class="share-field"><input id="shareLink" value="Create a link first" readonly /><button id="copyLink">Create link</button></div>
+        <label class="toggle-row"><span><strong>Allow comments</strong><small>Readers can leave notes in the margin</small></span><input type="checkbox" checked /></label>
+        <div class="collab-box"><p class="eyebrow">Writing partner</p><p>Invite another registered writer to edit this manuscript.</p><div class="invite-field"><input id="inviteEmail" type="email" placeholder="writer@example.com" /><button id="inviteWriter">Invite</button></div><div class="member-list" id="memberList"></div></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
