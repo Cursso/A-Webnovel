@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vellum-and-vale
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: vellum-data
+      mountPath: /var/data
+      sizeGB: 1
